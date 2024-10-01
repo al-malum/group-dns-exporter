@@ -1,0 +1,91 @@
+{
+    "logPath": "/var/log/dnsexporter.log",
+    "logLevel": "INFO",
+    "mtlsExporter": {
+        "enabled": false,
+        "key": "./key.pem",
+        "cert": "./cert.pem",
+        "allowedCN": ["localhost2", "localhost1"],
+        "description":"mtls for the exporter page"
+    },
+    "mtlsRequests": {
+        "enabled": false,
+        "key": "./key.pem",
+        "cert": "./key.pem",
+        "description": "mtls for api request for powerdns"
+    },
+    "recursorServers": [
+        {
+            "recursorID": "Какой то апстрим",
+            "address": "10.10.10.10",
+            "record": "host1.m1.dev.test",
+            "dnsPort": 53
+        },
+        {
+            "recursorID": "Еще апстрим",
+            "address": "10.10.10.10",
+            "record": "host1.slave.dev.test",
+            "dnsPort": 5300
+        }
+    ],
+    "groupsAuth": [
+        {
+            "groupClusterID": "First group",
+            "authClusters": [
+                {
+                    "clusterID": "pdns-auth-1.1",
+                    "Master": "10.10.10.10",
+                    "slave": "10.10.10.10",
+                    "balancer": "10.10.10.10",
+                    "httpPort": 8081,
+                    "dnsPort": 5300,
+                    "requestedRecord": "host1.slave.dev.test",
+                    "apiToken": "",
+                    "maintenance": false,
+                    "description": ""
+                },
+                {
+                    "clusterID": "pdns-auth-1.2",
+                    "master": "10.10.10.10",
+                    "slave": "10.10.10.10",
+                    "balancer": "10.10.10.10",
+                    "httpPort": 8081,
+                    "dnsPort": 53,
+                    "requestedRecord": "host1.m1.dev.test",
+                    "apiToken": "",
+                    "maintenance": false,
+                    "description": ""
+                }
+            ]
+        },
+        {
+            "groupClusterID": "Second group",
+            "authClusters": [
+                {
+                    "clusterID": "pdns-auth-2.1",
+                    "master": "10.10.10.10",
+                    "slave": "10.10.10.10",
+                    "balancer": "10.10.10.10",
+                    "httpPort": 8081,
+                    "dnsPort": 53,
+                    "requestedRecord": "host1.m1.dev.test",
+                    "apiToken": "",
+                    "maintenance": false,
+                    "description": ""
+                },
+                {
+                    "clusterID": "pdns-auth-2.2",
+                    "master": "10.10.10.10",
+                    "slave": "10.10.10.10",
+                    "balancer": "10.10.10.10",
+                    "httpPort": 8081,
+                    "dnsPort": 53,
+                    "requestedRecord": "host1.m1.dev.test",
+                    "apiToken": "",
+                    "maintenance": true,
+                    "description": ""
+                }
+            ]
+        }
+    ]
+}
